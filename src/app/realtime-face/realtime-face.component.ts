@@ -14,54 +14,90 @@ export class RealtimeFaceComponent implements OnInit {
 
   async ngOnInit() {
     await this.blazeFaceService.loadModel();
-    this.startVideo();
-    this.startFaceDetection(); // Start real-time face detection
+    // this.startVideo();
+    // this.startFaceDetection(); // Start real-time face detection
+    this.startVideoAndFaceDetection(); // Start real-time face detection
   }
 
-  async startVideo() {
+  // async startVideo() {
+  //   const video = this.videoElement.nativeElement;
+  //   try {
+  //     const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  //     video.srcObject = stream;
+  //   } catch (error) {
+  //     console.error('Error accessing camera:', error);
+  //   }
+  // }
+
+  // async startFaceDetection() {
+  //   const canvas = this.canvasElement.nativeElement;
+  //   const context = canvas.getContext('2d');
+
+  //   if (!context) {
+  //     console.error('Could not get 2D context for canvas.');
+  //     return;
+  //   }
+
+  //   const video = this.videoElement.nativeElement;
+
+
+  //   const detectFacesLoop = async () => {
+  //     canvas.width = video.videoWidth; // Set canvas width to match video width
+  //     canvas.height = video.videoHeight;
+  //     context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  //     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  //     const predictions = await this.blazeFaceService.detectFaces(imageData);
+  //     // console.log(predictions);
+
+  //     context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+  //     context.drawImage(video, 0, 0, canvas.width, canvas.height); // Draw video frame again
+
+  //     this.drawFaceBoxes(context, predictions);
+
+  //     setTimeout(detectFacesLoop, 50); // Run the loop again after 1 second (1000 milliseconds)
+  //   };
+
+  //   video.addEventListener('play', () => {
+  //     detectFacesLoop(); // Start the loop when the video is playing
+  //   });
+  // }
+
+  async startVideoAndFaceDetection() {
     const video = this.videoElement.nativeElement;
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      video.srcObject = stream;
-    } catch (error) {
-      console.error('Error accessing camera:', error);
-    }
-  }
-
-  async startFaceDetection() {
     const canvas = this.canvasElement.nativeElement;
     const context = canvas.getContext('2d');
-    const setCanvasSize = () => {
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-    };
 
     if (!context) {
       console.error('Could not get 2D context for canvas.');
       return;
     }
 
-    const video = this.videoElement.nativeElement;
-
-
-    const detectFacesLoop = async () => {
-      canvas.width = video.videoWidth; // Set canvas width to match video width
-      canvas.height = video.videoHeight;
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-      const predictions = await this.blazeFaceService.detectFaces(imageData);
-      // console.log(predictions);
-
-      context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-      context.drawImage(video, 0, 0, canvas.width, canvas.height); // Draw video frame again
-
-      this.drawFaceBoxes(context, predictions);
-
-      setTimeout(detectFacesLoop, 50); // Run the loop again after 1 second (1000 milliseconds)
-    };
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+    } catch (error) {
+      console.error('Error accessing camera:', error);
+    }
 
     video.addEventListener('play', () => {
-      detectFacesLoop(); // Start the loop when the video is playing
+      canvas.width = video.videoWidth; // Set canvas width to match video width
+      canvas.height = video.videoHeight;
+
+      const detectFacesLoop = async () => {
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const predictions = await this.blazeFaceService.detectFaces(imageData);
+
+        context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        context.drawImage(video, 0, 0, canvas.width, canvas.height); // Draw video frame again
+
+        this.drawFaceBoxes(context, predictions);
+
+        // requestAnimationFrame(detectFacesLoop); // Use requestAnimationFrame for smoother animation
+      };
+
+      // detectFacesLoop(); // Start the loop when the video is playing
+      setInterval(detectFacesLoop, 50);
     });
   }
 
