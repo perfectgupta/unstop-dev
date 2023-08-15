@@ -21,7 +21,8 @@
     <h3>API Response:</h3>
     <div>
       <!-- <img *ngIf="response[0]?.face_detected && !reset" class="face-emoji" src="https://d8it4huxumps7.cloudfront.net/uploads/images/64d910207529e_slightly_smiling_face_1f642.png" alt="Face Emoji" /> -->
-      <pre> Face Detected! Accuracy is {{ response[0]?.confidence }} </pre>
+      <pre *ngIf="response[0]?.confidence > 5"> Face Detected! Accuracy is {{ response[0]?.confidence }} </pre>
+      <pre *ngIf="response[0]?.confidence < 5"> Face Not Detected! Accuracy is {{ response[0]?.confidence }} </pre>
     </div>
   </div>
 </div>
