@@ -73,7 +73,7 @@ export class FaceVerificationComponent implements AfterViewInit {
     formData.append('verifier', this.dataURItoBlob(this.image2), 'image2.jpg');
 
     // Replace this URL with your actual API endpoint
-    const apiUrl = 'http://13.233.168.88/face/verify';
+    const apiUrl = 'http://13.233.140.130/face/verify';
 
     fetch(apiUrl, {
       method: 'POST',

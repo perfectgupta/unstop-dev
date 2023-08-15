@@ -70,7 +70,7 @@ export class FaceExtractionComponent implements OnInit, OnDestroy {
   }
 
   sendImageToAPI(imageData: string) {
-    const apiUrl = 'http://13.233.168.88/face/extract'; // Replace with your API URL
+    const apiUrl = 'http://13.233.140.130/face/extract'; // Replace with your API URL
 
     // Convert base64 image data to Blob
     const byteCharacters = atob(imageData.split(',')[1]);
