@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FaceAnalyserComponent } from './face-analyser/face-analyser.component';
 import { FaceExtractionComponent } from './face-extraction/face-extraction.component';
 import { RealtimeFaceComponent } from './realtime-face/realtime-face.component';
+import { FaceVerificationComponent } from './face-verification/face-verification.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RealtimeFaceComponent } from './realtime-face/realtime-face.component';
     CameraCaptureComponent,
     FaceAnalyserComponent,
     FaceExtractionComponent,
-    RealtimeFaceComponent
+    RealtimeFaceComponent,
+    FaceVerificationComponent
   ],
   imports: [
     BrowserModule,

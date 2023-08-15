@@ -1,5 +1,37 @@
-<button (click)="navigate('detect')">Face Detection</button>
-<button (click)="navigate('analyser')">Face Analyser</button>
-<button (click)="navigate('extractor')">Face Extractor</button>
-<button (click)="navigate('realtime')">Face Detection Real-Time</button>
+<!-- <button class="button-success pure-button" (click)="navigate('detect')">Face Detection</button>
+<button class="button-secondary pure-button" (click)="navigate('analyser')">Face Analyser</button>
+<button class="button-success pure-button" (click)="navigate('extractor')">Face Extractor</button>
+<button class="button-secondary pure-button" (click)="navigate('realtime')">Face Detection Real-Time</button> -->
+<div class="menu-button">
+  <div (click)="navigate('detect')"  class="uiverse">
+    <span class="tooltip">Detects faces in pic!</span>
+    <span>
+      Face Detection
+    </span>
+  </div>
+  <div (click)="navigate('analyser')" class="uiverse">
+    <span class="tooltip">Analyses basic features!</span>
+    <span>
+      Face Analyser
+    </span>
+  </div>
+  <div (click)="navigate('extractor')" class="uiverse">
+    <span class="tooltip">Extracts faces in pic!</span>
+    <span>
+      Face Extractor
+    </span>
+  </div>
+  <div (click)="navigate('verifier')" class="uiverse">
+    <span class="tooltip">Verifies faces in pics!</span>
+    <span>
+      Face Verifier
+    </span>
+  </div>
+  <div (click)="navigate('realtime')" class="uiverse">
+    <span class="tooltip">On-device real-time detection!</span>
+    <span>
+      Real-Time Detection
+    </span>
+  </div>
+</div>
 <router-outlet></router-outlet>

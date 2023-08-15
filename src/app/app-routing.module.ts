@@ -4,6 +4,7 @@ import { CameraCaptureComponent } from './camera-capture/camera-capture.componen
 import { FaceAnalyserComponent } from './face-analyser/face-analyser.component';
 import { FaceExtractionComponent } from './face-extraction/face-extraction.component';
 import { RealtimeFaceComponent } from './realtime-face/realtime-face.component';
+import { FaceVerificationComponent } from './face-verification/face-verification.component';
 
 // const routes: Routes = [];
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'detect', component: CameraCaptureComponent },
   { path: 'analyser', component: FaceAnalyserComponent },
   { path: 'extractor', component: FaceExtractionComponent },
-  { path: 'realtime', component: RealtimeFaceComponent }
+  { path: 'realtime', component: RealtimeFaceComponent },
+  { path: 'verifier', component: FaceVerificationComponent }
 ];
 
 

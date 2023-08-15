@@ -1,0 +1,38 @@
+<div class="unbox">
+  <h1>UnFace Verification Model Testing</h1>
+  <div *ngIf="!bothImagesCaptured; else imagesCapturedContent">
+    <div>
+      <video #videoElement autoplay></video>
+    </div>
+    <div>
+      <button (click)="captureImage()" [disabled]="image2">Capture {{ image2 ? 'Again' : 'Image' }}</button>
+      <button style="margin-left: 10px;" (click)="resetImages()" [disabled]="!image1 && !image2">Capture Again</button>
+    </div>
+  </div>
+  <ng-template #imagesCapturedContent>
+  <div *ngIf="image1 && image2">
+    <div class="image-container">
+      <img [src]="image1" alt="Image 1" [ngClass]="{'verified': result?.verified}">
+      <div class="overlay" *ngIf="result?.facial_areas?.img1">
+        <div class="face-box" [ngStyle]="getFaceBoxStyle(result.facial_areas.img1)"></div>
+        <div class="emoji" *ngIf="result?.verified; else crossEmoji">&#9989;</div>
+        <ng-template #crossEmoji>&#10060;</ng-template>
+      </div>
+    </div>
+    <div class="image-container">
+      <img [src]="image2" alt="Image 2" [ngClass]="{'verified': result?.verified}">
+      <div class="overlay" *ngIf="result?.facial_areas?.img2">
+        <div class="face-box" [ngStyle]="getFaceBoxStyle(result.facial_areas.img2)"></div>
+        <div class="emoji" *ngIf="result?.verified; else crossEmoji">&#9989;</div>
+        <ng-template #crossEmoji>&#10060;</ng-template>
+      </div>
+    </div>
+  </div>
+  <div style="display: flex;">
+    <button style="margin-right: 10px;" (click)="resetImages()">Capture Again</button>
+    <button (click)="sendImages()" [disabled]="!image1 || !image2 || result?.verified">Send Images</button>
+  </div>
+  </ng-template>
+
+
+</div>
