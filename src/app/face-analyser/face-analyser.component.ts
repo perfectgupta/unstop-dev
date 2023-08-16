@@ -17,6 +17,7 @@ export class FaceAnalyserComponent implements OnInit, OnDestroy {
     "Woman": "",
     "Man": ""
   }
+  loading: boolean = false;
 
   constructor(private http: HttpClient) {}
 
@@ -87,11 +88,28 @@ export class FaceAnalyserComponent implements OnInit, OnDestroy {
     this.capturing = false;
     this.imageData = undefined;
     this.initCamera();
+    this.loading = false;
     this.videoElement.nativeElement.style.display = 'block';
   }
 
+  uploadImage(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageData = e.target?.result as string;
+        this.sendImageToAPI(this.imageData);
+        this.capturing = true; // Display the uploaded image
+        const video = this.videoElement.nativeElement;
+        video.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   sendImageToAPI(imageData: string) {
-    const apiUrl = 'http://13.233.140.130/face/analyse'; // Replace with your API URL
+    const apiUrl = 'http://127.0.0.1:8086/face/analyse'; // Replace with your API URL
+    this.loading = true;
 
     // Convert base64 image data to Blob
     const byteCharacters = atob(imageData.split(',')[1]);
@@ -117,9 +135,11 @@ export class FaceAnalyserComponent implements OnInit, OnDestroy {
       (response) => {
         this.response = response;
         this.reset = false;
+        this.loading = false;
       },
       (error) => {
         console.error('Error sending image to API:', error);
+        this.loading = false;
       }
     );
   }
@@ -159,6 +179,7 @@ export class FaceAnalyserComponent implements OnInit, OnDestroy {
   clearResponse(): void {
     this.response = null;
     this.reset = true;
+    this.loading = false;
   }
 
 };

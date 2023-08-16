@@ -69,8 +69,23 @@ export class FaceExtractionComponent implements OnInit, OnDestroy {
     this.videoElement.nativeElement.style.display = 'block';
   }
 
+  uploadImage(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imageData = e.target?.result as string;
+        this.sendImageToAPI(this.imageData);
+        this.capturing = true; // Display the uploaded image
+        const video = this.videoElement.nativeElement;
+        video.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   sendImageToAPI(imageData: string) {
-    const apiUrl = 'http://13.233.140.130/face/extract'; // Replace with your API URL
+    const apiUrl = 'http://127.0.0.1:8086/face/extract'; // Replace with your API URL
 
     // Convert base64 image data to Blob
     const byteCharacters = atob(imageData.split(',')[1]);

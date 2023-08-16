@@ -37,7 +37,8 @@
   </div>
   <div style="display: flex;">
     <button style="margin-right: 10px;" (click)="resetImages()">Capture Again</button>
-    <button (click)="sendImages()" [disabled]="!image1 || !image2 || result?.verified">Send Images</button>
+    <input type="checkbox" [(ngModel)]="checkboxValue">Pro
+    <button style="margin-left: 15px;" (click)="sendImages(checkboxValue)" [disabled]="!image1 || !image2 || result?.verified">Send Images</button>
   </div>
   </ng-template>
 

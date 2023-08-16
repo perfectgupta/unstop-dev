@@ -12,6 +12,7 @@ export class FaceVerificationComponent implements AfterViewInit {
   image2: string = '';
   result: any = {};
   bothImagesCaptured: boolean = false;
+  checkboxValue: boolean = false;
 
   ngAfterViewInit() {
     this.startCamera();
@@ -84,13 +85,17 @@ export class FaceVerificationComponent implements AfterViewInit {
   }
 
 
-  sendImages() {
+  sendImages(checkboxValue: boolean) {
     const formData = new FormData();
     formData.append('main', this.dataURItoBlob(this.image1), 'image1.jpg');
     formData.append('verifier', this.dataURItoBlob(this.image2), 'image2.jpg');
 
     // Replace this URL with your actual API endpoint
-    const apiUrl = 'http://127.0.0.1:8086/face/verify';
+    if (checkboxValue) {
+      var apiUrl = 'http://127.0.0.1:8086/face/verify2';
+    } else {
+      var apiUrl = 'http://127.0.0.1:8086/face/verify';
+    }
 
     fetch(apiUrl, {
       method: 'POST',

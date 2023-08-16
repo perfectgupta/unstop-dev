@@ -1,13 +1,11 @@
-<div class="unbox" (keydown.enter)="captureImage()">
+<!-- <div class="unbox" (keydown.enter)="captureImage()">
   <h1>UnFace Extraction Model Testing</h1>
   <div>
     <video #videoElement autoplay></video>
-    <!-- Display the captured image with a green boundary box and a face emoji -->
     <div class="image-container" *ngIf="!reset && response && response[0]?.face_detected">
       <img #capturedImage [src]="imageData" alt="Captured Image" *ngIf="capturing" />
       <div class="boundary-box" [ngStyle]="getBoundaryBoxStyles(response[0]?.facial_area)">
         <img style="margin-bottom: 200px;" class="face-emoji" src="https://em-content.zobj.net/source/microsoft-teams/363/slightly-smiling-face_1f642.png" alt="Face Emoji" />
-        <!-- <div class="green-tick">✔</div> -->
       </div>
     </div>
   </div>
@@ -20,10 +18,33 @@
   <div *ngIf="response && !reset">
     <h3>API Response:</h3>
     <div>
-      <!-- <img *ngIf="response[0]?.face_detected && !reset" class="face-emoji" src="https://d8it4huxumps7.cloudfront.net/uploads/images/64d910207529e_slightly_smiling_face_1f642.png" alt="Face Emoji" /> -->
       <pre *ngIf="response[0]?.confidence > 0.5"> Face Detected! Accuracy is {{ response[0]?.confidence }} </pre>
       <pre *ngIf="response[0]?.confidence < 0.5"> Face Not Detected! Accuracy is {{ response[0]?.confidence }} </pre>
     </div>
   </div>
+</div> -->
+<div class="unbox">
+  <h1>UnFace Extraction Model Testing</h1>
+  <div>
+    <video #videoElement autoplay></video>
+    <!-- Display the captured image with a green boundary box and a face emoji -->
+    <div class="image-container" *ngIf="!reset && response && response[0]?.face_detected">
+      <img #capturedImage [src]="imageData" alt="Captured Image" *ngIf="capturing" />
+      <div class="boundary-box" [ngStyle]="getBoundaryBoxStyles(response[0]?.facial_area)">
+        <img style="margin-bottom: 200px;" class="face-emoji" src="https://em-content.zobj.net/source/microsoft-teams/363/slightly-smiling-face_1f642.png" alt="Face Emoji" />
+      </div>
+    </div>
+  </div>
+  <div>
+    <input type="file" (change)="uploadImage($event)">
+    <button (click)="captureImage()" *ngIf="!capturing">Capture Image</button>
+    <button (click)="captureAgain()" *ngIf="capturing">Capture Again</button>
+  </div>
+  <div *ngIf="response && !reset">
+    <h3>API Response:</h3>
+    <div>
+      <pre style="font-size: 18px;" *ngIf="response[0]?.confidence > 0.5"> Face Detected! Accuracy is {{ response[0]?.confidence }} </pre>
+      <pre style="font-size: 18px;" *ngIf="response[0]?.confidence < 0.5"> Face Not Detected! Accuracy is {{ response[0]?.confidence }} </pre>
+    </div>
+  </div>
 </div>
-

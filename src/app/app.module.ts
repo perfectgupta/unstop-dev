@@ -9,6 +9,7 @@ import { FaceAnalyserComponent } from './face-analyser/face-analyser.component';
 import { FaceExtractionComponent } from './face-extraction/face-extraction.component';
 import { RealtimeFaceComponent } from './realtime-face/realtime-face.component';
 import { FaceVerificationComponent } from './face-verification/face-verification.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FaceVerificationComponent } from './face-verification/face-verification
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

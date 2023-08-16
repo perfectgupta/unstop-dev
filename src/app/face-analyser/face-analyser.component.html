@@ -12,18 +12,31 @@
     </div>
   </div>
   <div *ngIf="!capturing" (keydown.enter)="captureImage()">
+    <input type="file" (change)="uploadImage($event)">
     <button (click)="captureImage()">Capture Image</button>
   </div>
   <div *ngIf="capturing" (keydown.enter)="captureImage()">
     <button (click)="captureAgain()">Capture Again</button>
   </div>
+  <ng-container *ngIf="loading; else responseContent">
+    <!-- Loader component or animation -->
+    <div class="spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <span style="margin-top: 30px;">Loading!</span>
+  </ng-container>
+  <ng-template #responseContent>
   <div *ngIf="response && !reset">
     <h3>API Response:</h3>
     <div>
-      <!-- <img *ngIf="response[0]?.face_detected && !reset" class="face-emoji" src="https://d8it4huxumps7.cloudfront.net/uploads/images/64d910207529e_slightly_smiling_face_1f642.png" alt="Face Emoji" /> -->
-      <pre> Face Detected! Emotion is {{ response[0]?.dominant_emotion }}, Age is {{ response[0]?.age }}, <br>
-        Gender is {{ response[0]?.dominant_gender }}, Race is {{ response[0]?.dominant_race }} </pre>
-    </div>
-  </div>
+        <pre style="font-size: 18px;"> Face Detected! Emotion is (<img style="width: 30px;height: 30px;margin-bottom: -3px;" [src]="getEmotionImage(response[0]?.dominant_emotion)" alt="Face Emoji" />) <strong>{{ response[0]?.dominant_emotion }}</strong>, Age is <strong>{{ response[0]?.age }}</strong>, <br>
+          Gender is <strong>{{ response[0]?.dominant_gender }}</strong>, Race is <strong>{{ response[0]?.dominant_race }}</strong></pre>
+        </div>
+      </div>
+    </ng-template>
 </div>
 
