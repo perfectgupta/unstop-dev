@@ -58,6 +58,23 @@ export class FaceVerificationComponent implements AfterViewInit {
     }
   }
 
+  uploadImage(imageNumber: number, event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const imageDataURL = e.target?.result as string;
+        if (imageNumber === 1 && !this.image1) {
+          this.image1 = imageDataURL;
+        } else if (imageNumber === 2 && !this.image2) {
+          this.image2 = imageDataURL;
+          this.bothImagesCaptured = true;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   resetImages() {
     this.image1 = '';
     this.image2 = '';
@@ -73,7 +90,7 @@ export class FaceVerificationComponent implements AfterViewInit {
     formData.append('verifier', this.dataURItoBlob(this.image2), 'image2.jpg');
 
     // Replace this URL with your actual API endpoint
-    const apiUrl = 'http://13.233.140.130/face/verify';
+    const apiUrl = 'http://127.0.0.1:8086/face/verify';
 
     fetch(apiUrl, {
       method: 'POST',

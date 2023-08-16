@@ -3,10 +3,17 @@
 <button class="button-success pure-button" (click)="navigate('extractor')">Face Extractor</button>
 <button class="button-secondary pure-button" (click)="navigate('realtime')">Face Detection Real-Time</button> -->
 <div class="menu-button">
-  <div (click)="navigate('detect')"  class="uiverse">
+  <!-- <div (click)="navigate('detect')"  class="uiverse">
     <span class="tooltip">Detects faces in pic!</span>
     <span>
       Face Detection
+    </span>
+  </div> -->
+
+  <div class="first">
+    <!-- <span class="tooltip">Analyses basic features!</span> -->
+    <span>
+      UnFace [BETA]
     </span>
   </div>
   <div (click)="navigate('analyser')" class="uiverse">
@@ -16,9 +23,9 @@
     </span>
   </div>
   <div (click)="navigate('extractor')" class="uiverse">
-    <span class="tooltip">Extracts faces in pic!</span>
+    <span class="tooltip">Detects faces in pic!</span>
     <span>
-      Face Extractor
+      Face Detection
     </span>
   </div>
   <div (click)="navigate('verifier')" class="uiverse">
