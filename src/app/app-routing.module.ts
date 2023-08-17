@@ -8,7 +8,7 @@ import { FaceVerificationComponent } from './face-verification/face-verification
 
 // const routes: Routes = [];
 const routes: Routes = [
-  // { path: '', redirectTo: '/detect', pathMatch: 'full' },
+  { path: '', redirectTo: '/detector', pathMatch: 'full' },
   // { path: 'detect', component: CameraCaptureComponent },
   { path: 'detector', component: FaceExtractionComponent },
   { path: 'analyser', component: FaceAnalyserComponent },
