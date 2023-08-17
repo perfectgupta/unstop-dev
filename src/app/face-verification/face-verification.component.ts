@@ -92,9 +92,9 @@ export class FaceVerificationComponent implements AfterViewInit {
 
     // Replace this URL with your actual API endpoint
     if (checkboxValue) {
-      var apiUrl = 'http://127.0.0.1:8086/face/verify2';
+      var apiUrl = 'http://13.234.105.150/face/verify2';
     } else {
-      var apiUrl = 'http://127.0.0.1:8086/face/verify';
+      var apiUrl = 'http://13.234.105.150/face/verify';
     }
 
     fetch(apiUrl, {

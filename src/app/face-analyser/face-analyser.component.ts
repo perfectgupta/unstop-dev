@@ -108,7 +108,7 @@ export class FaceAnalyserComponent implements OnInit, OnDestroy {
   }
 
   sendImageToAPI(imageData: string) {
-    const apiUrl = 'http://127.0.0.1:8086/face/analyse'; // Replace with your API URL
+    const apiUrl = 'http://13.234.105.150/face/analyse'; // Replace with your API URL
     this.loading = true;
 
     // Convert base64 image data to Blob
