@@ -12,6 +12,7 @@ export class CameraCaptureComponent implements OnInit, OnDestroy {
   response: any | undefined;
   capturing: boolean = false;
   reset: boolean = true;
+  isLoading: boolean = false;
 
   constructor(private http: HttpClient) {}
 
@@ -67,6 +68,7 @@ export class CameraCaptureComponent implements OnInit, OnDestroy {
     this.imageData = undefined;
     this.initCamera();
     this.videoElement.nativeElement.style.display = 'block';
+    this.isLoading = false;
   }
 
   sendImageToAPI(imageData: string) {
@@ -96,6 +98,7 @@ export class CameraCaptureComponent implements OnInit, OnDestroy {
       (response) => {
         this.response = response;
         this.reset = false;
+        this.isLoading = true;
       },
       (error) => {
         console.error('Error sending image to API:', error);
@@ -138,6 +141,7 @@ export class CameraCaptureComponent implements OnInit, OnDestroy {
   clearResponse(): void {
     this.response = null;
     this.reset = true;
+    this.isLoading = false;
   }
 
 }

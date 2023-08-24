@@ -35,12 +35,22 @@
       </div>
     </div>
   </div>
-  <div>
+  <div *ngIf="!isLoading">
     <input type="file" (change)="uploadImage($event)">
     <button (click)="captureImage()" *ngIf="!capturing">Capture Image</button>
     <button (click)="captureAgain()" *ngIf="capturing">Capture Again</button>
   </div>
-  <div *ngIf="response && !reset">
+  <ng-container *ngIf="isLoading">
+    <div class="spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <span style="margin-top: 30px;">Loading!</span>
+  </ng-container>
+  <div *ngIf="response && !reset && !isLoading">
     <h3>API Response:</h3>
     <div>
       <pre style="font-size: 18px;" *ngIf="response[0]?.confidence > 0.5"> Face Detected! Accuracy is {{ response[0]?.confidence }} </pre>

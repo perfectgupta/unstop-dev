@@ -12,15 +12,18 @@ export class FaceExtractionComponent implements OnInit, OnDestroy {
   response: any | undefined;
   capturing: boolean = false;
   reset: boolean = true;
+  isLoading: boolean = false;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.initCamera();
+    this.isLoading = false;
   }
 
   ngOnDestroy() {
     this.stopCamera();
+    this.isLoading = false;
   }
 
   initCamera() {
@@ -34,6 +37,7 @@ export class FaceExtractionComponent implements OnInit, OnDestroy {
       })
       .catch((error) => {
         console.error('Error accessing camera:', error);
+        this.isLoading = false;
       });
   }
 
@@ -67,6 +71,7 @@ export class FaceExtractionComponent implements OnInit, OnDestroy {
     this.imageData = undefined;
     this.initCamera();
     this.videoElement.nativeElement.style.display = 'block';
+    this.isLoading = false;
   }
 
   uploadImage(event: any) {
@@ -85,6 +90,7 @@ export class FaceExtractionComponent implements OnInit, OnDestroy {
   }
 
   sendImageToAPI(imageData: string) {
+    this.isLoading = true;
     const apiUrl = 'https://v6inuxfdgvgm4rgjxr3rbxcwqm0wxzii.lambda-url.ap-south-1.on.aws/face/detect'; // Replace with your API URL
 
     // Convert base64 image data to Blob
@@ -111,9 +117,11 @@ export class FaceExtractionComponent implements OnInit, OnDestroy {
       (response) => {
         this.response = response;
         this.reset = false;
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error sending image to API:', error);
+        this.isLoading = false;
       }
     );
   }

@@ -4,43 +4,53 @@
     <div class="emoji" *ngIf="result?.verified; else crossEmoji">&#9989;</div>
     <ng-template #crossEmoji>&#10060;</ng-template>
   </ng-container> -->
-  <div *ngIf="!bothImagesCaptured; else imagesCapturedContent">
-    <div>
-      <video #videoElement autoplay></video>
+  <ng-container *ngIf="isLoading">
+    <div class="spinner">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-    <div>
-      <button (click)="captureImage()" [disabled]="image2">Capture {{ image1 ? 'Again' : '1st Image' }}</button>
-      <input placeholder="1st image" style="margin-left: 10px;" type="file" (change)="uploadImage(1, $event)">
-      <input placeholder="2nd image" type="file" (change)="uploadImage(2, $event)">
-      <button (click)="captureImage()" [disabled]="!image1">Capture {{ image2 ? 'Again' : '2nd Image' }}</button>
-      <button style="margin-left: 10px;" (click)="resetImages()" [disabled]="!image1 && !image2">Capture Again</button>
-    </div>
-  </div>
-  <ng-template #imagesCapturedContent>
-  <div *ngIf="image1 && image2">
-    <div class="image-container">
-      <img [src]="image1" alt="Image 1" [ngClass]="{'verified': result?.verified}">
-      <div class="overlay" *ngIf="result?.facial_areas?.img1">
-        <div class="face-box" [ngStyle]="getFaceBoxStyle(result.facial_areas.img1)"></div>
-        <div class="emoji" *ngIf="result?.verified; else crossEmoji">&#9989;</div>
-        <ng-template #crossEmoji><div class="emoji">&#10060;</div></ng-template>
+    <span style="margin-top: 30px;">Loading!</span>
+  </ng-container>
+  <ng-container *ngIf="!isLoading">
+    <div *ngIf="!bothImagesCaptured; else imagesCapturedContent">
+      <div>
+        <video #videoElement autoplay></video>
+      </div>
+      <div>
+        <button (click)="captureImage()" [disabled]="image2">Capture {{ image1 ? 'Again' : '1st Image' }}</button>
+        <input placeholder="1st image" style="margin-left: 10px;" type="file" (change)="uploadImage(1, $event)">
+        <input placeholder="2nd image" type="file" (change)="uploadImage(2, $event)">
+        <button (click)="captureImage()" [disabled]="!image1">Capture {{ image2 ? 'Again' : '2nd Image' }}</button>
+        <button style="margin-left: 10px;" (click)="resetImages()" [disabled]="!image1 && !image2">Capture Again</button>
       </div>
     </div>
-    <div class="image-container">
-      <img [src]="image2" alt="Image 2" [ngClass]="{'verified': result?.verified}">
-      <div class="overlay" *ngIf="result?.facial_areas?.img2">
-        <div class="face-box" [ngStyle]="getFaceBoxStyle(result.facial_areas.img2)"></div>
-        <div class="emoji" *ngIf="result?.verified; else crossEmoji">&#9989;</div>
-        <ng-template #crossEmoji><div class="emoji">&#10060;</div></ng-template>
+    <ng-template #imagesCapturedContent>
+    <div *ngIf="image1 && image2">
+      <div class="image-container">
+        <img [src]="image1" alt="Image 1" [ngClass]="{'verified': result?.verified}">
+        <div class="overlay" *ngIf="result?.facial_areas?.img1">
+          <div class="face-box" [ngStyle]="getFaceBoxStyle(result.facial_areas.img1)"></div>
+          <div class="emoji" *ngIf="result?.verified; else crossEmoji">&#9989;</div>
+          <ng-template #crossEmoji><div class="emoji">&#10060;</div></ng-template>
+        </div>
+      </div>
+      <div class="image-container">
+        <img [src]="image2" alt="Image 2" [ngClass]="{'verified': result?.verified}">
+        <div class="overlay" *ngIf="result?.facial_areas?.img2">
+          <div class="face-box" [ngStyle]="getFaceBoxStyle(result.facial_areas.img2)"></div>
+          <div class="emoji" *ngIf="result?.verified; else crossEmoji">&#9989;</div>
+          <ng-template #crossEmoji><div class="emoji">&#10060;</div></ng-template>
+        </div>
       </div>
     </div>
-  </div>
-  <div style="display: flex;">
-    <button style="margin-right: 10px;" (click)="resetImages()">Capture Again</button>
-    <input type="checkbox" [(ngModel)]="checkboxValue">Pro
-    <button style="margin-left: 15px;" (click)="sendImages(checkboxValue)" [disabled]="!image1 || !image2 || result?.verified">Send Images</button>
-  </div>
-  </ng-template>
-
-
+    <div style="display: flex;">
+      <button style="margin-right: 10px;" (click)="resetImages()">Capture Again</button>
+      <input type="checkbox" [(ngModel)]="checkboxValue">Pro
+      <button style="margin-left: 15px;" (click)="sendImages(checkboxValue)" [disabled]="!image1 || !image2 || result?.verified">Send Images</button>
+    </div>
+    </ng-template>
+  </ng-container>
 </div>

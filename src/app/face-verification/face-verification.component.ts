@@ -13,9 +13,11 @@ export class FaceVerificationComponent implements AfterViewInit {
   result: any = {};
   bothImagesCaptured: boolean = false;
   checkboxValue: boolean = false;
+  isLoading: boolean = false;
 
   ngAfterViewInit() {
     this.startCamera();
+    this.isLoading = false;
   }
 
   async startCamera() {
@@ -24,6 +26,7 @@ export class FaceVerificationComponent implements AfterViewInit {
       this.videoElement.nativeElement.srcObject = this.videoStream;
     } catch (error) {
       console.error('Error accessing camera:', error);
+      this.isLoading = false;
     }
   }
 
@@ -82,10 +85,12 @@ export class FaceVerificationComponent implements AfterViewInit {
     this.result = {};
     this.bothImagesCaptured = false; // Reset the flag
     this.startCamera(); // Re-display the video element
+    this.isLoading = false;
   }
 
 
   sendImages(checkboxValue: boolean) {
+    this.isLoading = true;
     const formData = new FormData();
     formData.append('main', this.dataURItoBlob(this.image1), 'image1.jpg');
     formData.append('verifier', this.dataURItoBlob(this.image2), 'image2.jpg');
@@ -105,9 +110,11 @@ export class FaceVerificationComponent implements AfterViewInit {
     .then(data => {
       console.log('API response:', data);
       this.result = data; // Update the result with API response
+      this.isLoading = false;
     })
     .catch(error => {
       console.error('API error:', error);
+      this.isLoading = false;
     });
   }
 

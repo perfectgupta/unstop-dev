@@ -35,6 +35,10 @@
   <div *ngIf="capturing" (keydown.enter)="captureImage()">
     <button (click)="captureAgain()">Capture Again</button>
   </div>
+  {{isLoading}}
+  <div *ngIf="isLoading" class="loader">
+    Loading...
+  </div>
   <div *ngIf="response && !reset">
     <h3>API Response:</h3>
     <div>
