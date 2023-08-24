@@ -92,9 +92,9 @@ export class FaceVerificationComponent implements AfterViewInit {
 
     // Replace this URL with your actual API endpoint
     if (checkboxValue) {
-      var apiUrl = 'http://127.0.0.1:8086/face/verify2';
+      var apiUrl = 'https://v6inuxfdgvgm4rgjxr3rbxcwqm0wxzii.lambda-url.ap-south-1.on.aws/face/verify2';
     } else {
-      var apiUrl = 'http://127.0.0.1:8086/face/verify';
+      var apiUrl = 'https://v6inuxfdgvgm4rgjxr3rbxcwqm0wxzii.lambda-url.ap-south-1.on.aws/face/verify';
     }
 
     fetch(apiUrl, {
