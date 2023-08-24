@@ -23,7 +23,7 @@
       <div class="overlay" *ngIf="result?.facial_areas?.img1">
         <div class="face-box" [ngStyle]="getFaceBoxStyle(result.facial_areas.img1)"></div>
         <div class="emoji" *ngIf="result?.verified; else crossEmoji">&#9989;</div>
-        <ng-template #crossEmoji>&#10060;</ng-template>
+        <ng-template #crossEmoji><div class="emoji">&#10060;</div></ng-template>
       </div>
     </div>
     <div class="image-container">
@@ -31,7 +31,7 @@
       <div class="overlay" *ngIf="result?.facial_areas?.img2">
         <div class="face-box" [ngStyle]="getFaceBoxStyle(result.facial_areas.img2)"></div>
         <div class="emoji" *ngIf="result?.verified; else crossEmoji">&#9989;</div>
-        <ng-template #crossEmoji>&#10060;</ng-template>
+        <ng-template #crossEmoji><div class="emoji">&#10060;</div></ng-template>
       </div>
     </div>
   </div>
