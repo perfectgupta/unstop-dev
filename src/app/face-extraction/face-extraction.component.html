@@ -53,8 +53,8 @@
   <div *ngIf="response && !reset && !isLoading">
     <h3>API Response:</h3>
     <div>
-      <pre style="font-size: 18px;" *ngIf="response[0]?.confidence > 0.5"> Face Detected! Accuracy is {{ response[0]?.confidence }} </pre>
-      <pre style="font-size: 18px;" *ngIf="response[0]?.confidence < 0.5"> Face Not Detected! Accuracy is {{ response[0]?.confidence }} </pre>
+      <pre style="font-size: 18px;" *ngIf="response[0]?.confidence > 0.5"> Face Detected! Confidence is {{ response[0]?.confidence }} </pre>
+      <pre style="font-size: 18px;" *ngIf="response[0]?.confidence < 0.5"> Face Not Detected! Confidence is {{ response[0]?.confidence }} </pre>
     </div>
   </div>
 </div>
