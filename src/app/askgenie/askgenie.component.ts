@@ -53,6 +53,7 @@ export class AskgenieComponent {
         this.highlightedContext = this.highlightAnswerInContext(this.context, this.response);
         console.log(this.highlightedContext);
         this.context = context;
+        this.question = question
       },
       (error) => {
         // Handle API error here
