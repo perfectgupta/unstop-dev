@@ -1,0 +1,48 @@
+<!-- <div class="container">
+  <div class="form-group">
+    <div class="custom-input">
+      <div class="label-title">Context</div>
+      <input class="input" type="text" placeholder="Enter context here">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="custom-input">
+      <div class="label-title">Question</div>
+      <input class="input" type="text" placeholder="Enter question here">
+    </div>
+  </div>
+  <button class="button" (click)="askQuestion()">Ask</button>
+  <div class="loader" *ngIf="loading"></div>
+  <div class="response">
+    <p [innerHTML]="highlightedContext"></p>
+  </div>
+</div> -->
+<div class="container">
+  <div class="form-group">
+    <div class="custom-input">
+      <div class="label-title">Context</div>
+      <input class="input" type="text" placeholder="Enter context here" [(ngModel)]="context">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="custom-input">
+      <div class="label-title">Question</div>
+      <input class="input" type="text" placeholder="Enter question here" [(ngModel)]="question">
+    </div>
+  </div>
+  <button class="button" (click)="askQuestion(context,question)">Ask</button>
+  <div *ngIf="response" class="response">
+    <!-- <p [innerHTML]="highlightedContext"></p> -->
+    <h2>Answer:</h2>
+    <div [innerHTML]="response"></div>
+  </div>
+</div>
+<div class="loader" *ngIf="loading">
+  <div style="display: inline-block;">
+    <div class="typewriter">
+      <div class="slide"><i></i></div>
+      <div class="paper"></div>
+      <div class="keyboard"></div>
+    </div>
+  </div>
+</div>

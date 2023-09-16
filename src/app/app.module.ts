@@ -10,6 +10,7 @@ import { FaceExtractionComponent } from './face-extraction/face-extraction.compo
 import { RealtimeFaceComponent } from './realtime-face/realtime-face.component';
 import { FaceVerificationComponent } from './face-verification/face-verification.component';
 import { FormsModule } from '@angular/forms';
+import { AskgenieComponent } from './askgenie/askgenie.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     FaceAnalyserComponent,
     FaceExtractionComponent,
     RealtimeFaceComponent,
-    FaceVerificationComponent
+    FaceVerificationComponent,
+    AskgenieComponent
   ],
   imports: [
     BrowserModule,

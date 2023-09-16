@@ -5,16 +5,18 @@ import { FaceAnalyserComponent } from './face-analyser/face-analyser.component';
 import { FaceExtractionComponent } from './face-extraction/face-extraction.component';
 import { RealtimeFaceComponent } from './realtime-face/realtime-face.component';
 import { FaceVerificationComponent } from './face-verification/face-verification.component';
+import { AskgenieComponent } from './askgenie/askgenie.component';
 
 // const routes: Routes = [];
 const routes: Routes = [
-  { path: '', redirectTo: '/detector', pathMatch: 'full' },
+  { path: '', redirectTo: '/ask', pathMatch: 'full' },
   // { path: 'detect', component: CameraCaptureComponent },
   { path: 'detector', component: FaceExtractionComponent },
   { path: 'analyser', component: FaceAnalyserComponent },
   // { path: 'extractor', component: FaceExtractionComponent },
   { path: 'realtime', component: RealtimeFaceComponent },
-  { path: 'verifier', component: FaceVerificationComponent }
+  { path: 'verifier', component: FaceVerificationComponent },
+  { path: 'ask', component: AskgenieComponent }
 ];
 
 

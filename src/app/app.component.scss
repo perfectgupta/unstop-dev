@@ -26,27 +26,78 @@
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.first {
-  background: linear-gradient(320deg, rgb(3, 77, 146), rgb(0, 60, 255));
-  position: relative;
+// .first {
+  // background: linear-gradient(320deg, rgb(3, 77, 146), rgb(0, 60, 255));
+  // position: relative;
   // background: #ffffff;
   // color: #000;
   // padding: 15px;
-  margin: 10px;
-  border-radius: 10px;
-  width: auto;
-  padding: 0 17px;
-  height: 44px;
-  font-size: 15px;
+  // margin: 10px;
+  // border-radius: 10px;
+  // width: auto;
+  // padding: 0 17px;
+  // height: 44px;
+  // font-size: 15px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // flex-direction: column;
+  // box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  // cursor: pointer;
+  // transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  // color: #ffffff;
+// }
+
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  /* padding: 6px 12px; */
+  gap: 8px;
+  height: 34px;
+  width: 95px;
+  border: none;
+  background: rgba(0,115,230,.08);
+  border-radius: 20px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  color: #ffffff;
+  margin: 15px 8px;
+  border: 0.5px solid #0073e6
 }
+.svg-icon {
+  stroke: #0073e6;
+  animation: spin 4s linear infinite;
+}
+
+.lable {
+  line-height: 20px;
+  font-size: 17px;
+  color: #0073e6;
+  font-family: sans-serif;
+  letter-spacing: 1px;
+}
+
+.button:hover {
+  background: #0073e6;
+  .lable {
+    color: white;
+  }
+  .svg-icon {
+    animation: spin 2s linear infinite;
+    stroke: white;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+
 
 .tooltip {
   position: absolute;
