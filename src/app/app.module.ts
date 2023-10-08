@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { AskgenieComponent } from './askgenie/askgenie.component';
 import { QtcComponent } from './qtc/qtc.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
