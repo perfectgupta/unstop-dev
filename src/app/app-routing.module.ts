@@ -6,17 +6,19 @@ import { FaceExtractionComponent } from './face-extraction/face-extraction.compo
 import { RealtimeFaceComponent } from './realtime-face/realtime-face.component';
 import { FaceVerificationComponent } from './face-verification/face-verification.component';
 import { AskgenieComponent } from './askgenie/askgenie.component';
+import { QtcComponent } from './qtc/qtc.component';
 
 // const routes: Routes = [];
 const routes: Routes = [
-  { path: '', redirectTo: '/ask', pathMatch: 'full' },
+  { path: '', redirectTo: '/qtc', pathMatch: 'full' },
   // { path: 'detect', component: CameraCaptureComponent },
   { path: 'detector', component: FaceExtractionComponent },
   { path: 'analyser', component: FaceAnalyserComponent },
   // { path: 'extractor', component: FaceExtractionComponent },
   { path: 'realtime', component: RealtimeFaceComponent },
   { path: 'verifier', component: FaceVerificationComponent },
-  { path: 'ask', component: AskgenieComponent }
+  { path: 'ask', component: AskgenieComponent },
+  { path: 'qtc', component: QtcComponent }
 ];
 
 

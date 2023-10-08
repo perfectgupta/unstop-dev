@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>API Call and Bar Graph</h2>
+
+  <!-- Input form -->
+  <div class="form-group">
+    <input type="text" class="form-control" [(ngModel)]="textInput" placeholder="Enter Text">
+  </div>
+  <button class="btn btn-primary" (click)="submitRequest()">Submit</button>
+
+
+  <!-- Response and Bar Chart -->
+  <div *ngIf="showResponse">
+    <h3>API Response:</h3>
+    <pre>{{ apiResponse | json }}</pre>
+
+    <!-- Bar Chart -->
+
+  </div>
+</div>

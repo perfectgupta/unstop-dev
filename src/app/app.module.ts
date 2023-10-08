@@ -11,6 +11,9 @@ import { RealtimeFaceComponent } from './realtime-face/realtime-face.component';
 import { FaceVerificationComponent } from './face-verification/face-verification.component';
 import { FormsModule } from '@angular/forms';
 import { AskgenieComponent } from './askgenie/askgenie.component';
+import { QtcComponent } from './qtc/qtc.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 @NgModule({
   declarations: [
@@ -20,13 +23,15 @@ import { AskgenieComponent } from './askgenie/askgenie.component';
     FaceExtractionComponent,
     RealtimeFaceComponent,
     FaceVerificationComponent,
-    AskgenieComponent
+    AskgenieComponent,
+    QtcComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
