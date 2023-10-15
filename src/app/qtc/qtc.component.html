@@ -1,27 +1,39 @@
-<div class="container">
-  <h2>API Call and Bar Graph</h2>
-
-  <!-- Input form -->
-  <div class="form-group">
-    <input type="text" class="form-control" [(ngModel)]="textInput" placeholder="Enter Text">
+<h1>Skills-Tag Classifier Model</h1>
+<div class="group">
+  <!-- <svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon">
+  <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linejoin="round" stroke-linecap="round"></path>
+</svg> -->
+<svg stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon"><circle cx="12" cy="12" r="10" stroke="#000000" stroke-width="2"/>
+  <path d="M10 8.48352C10.5 7.49451 11 7 12 7C13.2461 7 14 7.98901 14 8.97802C14 9.96703 13.5 10.4615 12 11.4505V13M12 16.5V17" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+<input [(ngModel)]="inputText" (keyup.enter)="predictTags(inputText)" class="input" type="text" placeholder="Enter the question here!">
+</div>
+<div *ngIf="!isLoading" class="container">
+  <!-- <input type="text" [(ngModel)]="inputText" placeholder="Enter text here..."> -->
+  <button class="button" (click)="predictTags(inputText)">Predict Tags</button>
+  <div class="mt-20" *ngIf="!isLoading && labels.length > 0">
+    <div class="chip" *ngFor="let label of labels" [style.background-color]="getRandomColor()">{{ label[0] }} ({{ label[1] | number:'1.2-2' }})</div>
+    <span>Time Taken: {{time_taken | number:'1.2-2'}}s</span>
   </div>
-  <button class="btn btn-primary" (click)="submitRequest()">Submit</button>
-
-
-  <!-- Response and Bar Chart -->
-  <div *ngIf="showResponse">
-    <h3>API Response:</h3>
-    <pre>{{ apiResponse | json }}</pre>
-
-    <!-- Bar Chart -->
-    <div>
-      <canvas baseChart
-        [datasets]="barChartData"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [legend]="barChartLegend"
-        [chartType]="barChartType">
-      </canvas>
-    </div>
+</div>
+<div *ngIf="isLoading">
+  <div class="containers">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
+  <p class="text_loading">Loading...!</p>
+</div>
+
+<button class="button ml-20" (click)="toggleSidePanel()">See Supported Tags</button>
+<!-- Side Panel -->
+<div *ngIf="isSidePanelOpen" class="side-panel">
+  <!-- <button class="mb-20" (click)="toggleSidePanel()">Close</button> -->
+  <img style="cursor: pointer;" (click)="toggleSidePanel()" src="https://d8it4huxumps7.cloudfront.net/files/652bc6f6ccbf0_icons8_close.svg" height="20" alt="close">
+  <h3>Supported Tags</h3>
+  <h4>Total: {{supportedTags.length+1}}</h4>
+  <ul>
+    <li *ngFor="let tag of supportedTags">{{ tag }}</li>
+  </ul>
 </div>

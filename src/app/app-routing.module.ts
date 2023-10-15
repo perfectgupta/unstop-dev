@@ -10,7 +10,7 @@ import { QtcComponent } from './qtc/qtc.component';
 
 // const routes: Routes = [];
 const routes: Routes = [
-  { path: '', redirectTo: '/qtc', pathMatch: 'full' },
+  { path: '', redirectTo: '/stc', pathMatch: 'full' },
   // { path: 'detect', component: CameraCaptureComponent },
   { path: 'detector', component: FaceExtractionComponent },
   { path: 'analyser', component: FaceAnalyserComponent },
@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'realtime', component: RealtimeFaceComponent },
   { path: 'verifier', component: FaceVerificationComponent },
   { path: 'ask', component: AskgenieComponent },
-  { path: 'qtc', component: QtcComponent }
+  { path: 'stc', component: QtcComponent }
 ];
 
 
