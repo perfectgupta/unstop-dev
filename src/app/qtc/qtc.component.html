@@ -13,7 +13,7 @@
   <button class="button" (click)="predictTags(inputText)">Predict Tags</button>
   <div class="mt-20" *ngIf="!isLoading && labels.length > 0">
     <div class="chip" *ngFor="let label of labels" [style.background-color]="getRandomColor()">{{ label[0] }} ({{ label[1] | number:'1.2-2' }})</div>
-    <span>Time Taken: {{time_taken | number:'1.2-2'}}s</span>
+    <span>Time Taken: {{time_taken | number:'1.2-2'}} ms</span>
   </div>
 </div>
 <div *ngIf="isLoading">

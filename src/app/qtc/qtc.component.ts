@@ -57,7 +57,7 @@ export class QtcComponent {
         this.isLoading = false;
         if (response.labels.length > 0) {
           this.labels = response.labels;
-          this.time_taken = response.time_taken;
+          this.time_taken = response.time_taken * 1000;
         } else {
           this.labels = ['No tags predicted!'];
           this.time_taken = 0;
