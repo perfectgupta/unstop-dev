@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -19,6 +19,7 @@ export class QtcComponent {
   'swift', 'swiftui', 'technology', 'tensorflow', 'terraform', 'testing', 'tkinter', 'tsql', 'typescript', 'ubuntu', 'unity3d', 'user-interface', 'vb.net', 'vba', 'visual-studio', 'visual-studio-code', 'vue.js', 'web', 'web-scraping', 'webpack', 'websocket', 'windows', 'winforms', 'woocommerce', 'wordpress', 'wpf', 'xamarin', 'xamarin.forms', 'xcode', 'xml','yaml']; // You can update this list as needed.
   nontechSupportedTags: string[] = ['chemistry', 'biology', 'economics', 'finance', 'geography', 'history',  'management', 'marketing', 'maths','physics', 'politics', 'science','sports', 'social_sciences'];
   time_taken: number = 0;
+  answered: boolean = false;
 
 
   constructor(private http: HttpClient) {}
@@ -33,11 +34,16 @@ export class QtcComponent {
         this.isLoading = false;
         if (response.labels.length > 0) {
           console.log(response.labels);
-          this.labels = response.labels.sort((a: [string, number], b: [string, number]) => b[1] - a[1]).filter((label: [string, number]) => label[0] !== 'technology' && label[0] !== 'programming_language');;
+          this.labels = response.labels.sort((a: [string, number], b: [string, number]) => b[1] - a[1]).filter((label: [string, number]) => label[0] !== 'technology' && label[0] !== 'programming_language');
+          if (this.labels.length == 0) {
+            this.labels = [];
+            this.answered = true;
+          }
           this.time_taken = response.time_taken * 1000;
         } else {
-          this.labels = ['No tags predicted!'];
+          this.labels = [];
           this.time_taken = 0;
+          this.answered = true;
         }
       });
     }
