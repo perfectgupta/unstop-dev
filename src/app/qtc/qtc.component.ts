@@ -27,7 +27,8 @@ export class QtcComponent {
   predictTags(inputText: string) {
     if (inputText != '') {
       // const apiURL = `http://localhost:8000/predict?text=${encodeURIComponent(inputText)}`;
-      const apiURL = `https://mklobj224fnefrr6n77i5th5yi0vljdo.lambda-url.ap-south-1.on.aws/predict?text=${encodeURIComponent(inputText)}`;
+      // const apiURL = `https://mklobj224fnefrr6n77i5th5yi0vljdo.lambda-url.ap-south-1.on.aws/predict?text=${encodeURIComponent(inputText)}`;
+      const apiURL = `https://qda4c72r33slm2jc2kjnxazzne0gbxec.lambda-url.ap-south-1.on.aws/?question=${encodeURIComponent(inputText)}`;
 
       this.isLoading = true;
       this.http.post<any>(apiURL, {}).subscribe(response => {
