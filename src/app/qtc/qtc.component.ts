@@ -62,6 +62,17 @@ export class QtcComponent {
       this.http.post<any>(apiURL, {}).subscribe(response => {
         this.isLoading = false;
         // Assign each category to its corresponding property
+        console.log(response)
+        console.log(response.skills)
+
+        let data;
+        try {
+          // Attempt to parse the text as JSON
+          response = JSON.parse(response);
+        } catch (error) {
+          console.error('Error parsing response:', error);
+          return;
+        }
         this.skills = response.skills || [];
         this.topics = response.topic || [];
         this.industry = response.industry || [];
