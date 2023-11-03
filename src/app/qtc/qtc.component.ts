@@ -20,35 +20,67 @@ export class QtcComponent {
   nontechSupportedTags: string[] = ['chemistry', 'biology', 'economics', 'finance', 'geography', 'history',  'management', 'marketing', 'maths','physics', 'politics', 'science','sports', 'social_sciences'];
   time_taken: number = 0;
   answered: boolean = false;
+  skills: string[] = [];
+  topics: string[] = [];
+  industry: string[] = [];
+  difficultyLevel: string = '';
 
 
   constructor(private http: HttpClient) {}
 
+  // predictTags(inputText: string) {
+  //   if (inputText != '') {
+  //     // const apiURL = `http://localhost:8000/predict?text=${encodeURIComponent(inputText)}`;
+  //     // const apiURL = `https://mklobj224fnefrr6n77i5th5yi0vljdo.lambda-url.ap-south-1.on.aws/predict?text=${encodeURIComponent(inputText)}`;
+  //     const apiURL = `https://qda4c72r33slm2jc2kjnxazzne0gbxec.lambda-url.ap-south-1.on.aws/?question=${encodeURIComponent(inputText)}`;
+
+  //     this.isLoading = true;
+  //     this.http.post<any>(apiURL, {}).subscribe(response => {
+  //       this.isLoading = false;
+  //       if (response.labels.length > 0) {
+  //         console.log(response.labels);
+  //         this.labels = response.labels.sort((a: [string, number], b: [string, number]) => b[1] - a[1]).filter((label: [string, number]) => label[0] !== 'technology' && label[0] !== 'programming_language');
+  //         this.answered = true;
+  //         this.time_taken = response.time_taken * 1000;
+  //       } else {
+  //         this.labels = [];
+  //         this.time_taken = 0;
+  //         this.answered = true;
+  //       }
+  //     });
+  //   }
+  //   else {
+  //     this.labels = ['Enter the question first!'];
+  //   }
+  // }
+
   predictTags(inputText: string) {
     if (inputText != '') {
-      // const apiURL = `http://localhost:8000/predict?text=${encodeURIComponent(inputText)}`;
-      // const apiURL = `https://mklobj224fnefrr6n77i5th5yi0vljdo.lambda-url.ap-south-1.on.aws/predict?text=${encodeURIComponent(inputText)}`;
       const apiURL = `https://qda4c72r33slm2jc2kjnxazzne0gbxec.lambda-url.ap-south-1.on.aws/?question=${encodeURIComponent(inputText)}`;
 
       this.isLoading = true;
       this.http.post<any>(apiURL, {}).subscribe(response => {
         this.isLoading = false;
-        if (response.labels.length > 0) {
-          console.log(response.labels);
-          this.labels = response.labels.sort((a: [string, number], b: [string, number]) => b[1] - a[1]).filter((label: [string, number]) => label[0] !== 'technology' && label[0] !== 'programming_language');
-          this.answered = true;
-          this.time_taken = response.time_taken * 1000;
-        } else {
-          this.labels = [];
-          this.time_taken = 0;
-          this.answered = true;
-        }
+        // Assign each category to its corresponding property
+        this.skills = response.skills || [];
+        this.topics = response.topic || [];
+        this.industry = response.industry || [];
+        this.difficultyLevel = response.difficulty_level || 'unknown';
+        this.answered = true;
+      }, error => {
+        this.isLoading = false;
+        console.error('Error fetching tags:', error);
       });
-    }
-    else {
-      this.labels = ['Enter the question first!'];
+    } else {
+      this.skills = [];
+      this.topics = [];
+      this.industry = [];
+      this.difficultyLevel = 'unknown';
+      this.answered = false;
     }
   }
+
+
 
   getRandomColor() {
     const r = Math.floor(Math.random() * 128) + 127; // ensures R value between 127 and 255
